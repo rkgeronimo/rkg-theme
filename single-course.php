@@ -1,0 +1,98 @@
+<?php
+/**
+ * The Template for displaying all single posts
+ *
+ * Methods for TimberHelper can be found in the /lib sub-directory
+ *
+ * @package  WordPress
+ *
+ * @subpackage  Timber
+ *
+ * @since    Timber 0.1
+ */
+
+global $wpdb;
+$context         = Timber::get_context();
+$post            = Timber::query_post();
+$context['post'] = $post;
+$tableName       = $wpdb->prefix."rkg_course_meta";
+$context['meta'] = $wpdb->get_row(
+    "SELECT id, category, "
+    ."organiser, location, terms, price, limitation, registered, starttime, "
+    ."endtime, deadline FROM "
+    .$tableName
+    ." WHERE id="
+    .$post->ID
+);
+
+$context['organiser'] = new Timber\User($context['meta']->organiser);
+
+$context['courseTerms'] = $wpdb->get_results(
+    "SELECT id, category, "
+    ."starttime, endtime, deadline FROM "
+    .$tableName
+    ." WHERE deadline > "
+    .date("'Y-m-d'")
+    ." AND category = "
+    .$context['meta']->category
+    ." ORDER BY deadline"
+);
+
+foreach ($context['courseTerms'] as $key => $value) {
+    $context['courseTerms'][$key]->link = get_permalink($value->id);
+}
+
+$tableName               = $wpdb->prefix."rkg_course_template";
+$context['metaTemplate'] = $wpdb->get_row(
+    "SELECT * FROM "
+    .$tableName
+    ." WHERE id="
+    .$context['meta']->category
+);
+
+$context['metaTemplate']->hub3_price =
+    str_replace(",", "", $context['metaTemplate']->payment_price);
+$context['metaTemplate']->hub3_price =
+    str_pad($context['metaTemplate']->hub3_price, 15, "0", STR_PAD_LEFT);
+
+$tableName = $wpdb->prefix."rkg_course_signup";
+$students = $wpdb->get_col(
+    "SELECT user_id FROM "
+    .$tableName
+    ." WHERE course_id="
+    .$post->ID
+    ." ORDER BY created"
+);
+
+foreach ($students as $value) {
+    $context['students'][] = new Timber\User($value);
+}
+
+if ($context['user']) {
+    $tableName = $wpdb->prefix."rkg_course_medical_meta";
+    $context['helthsurvey'] = $wpdb->get_row(
+        "SELECT * FROM "
+        .$tableName
+        ." WHERE post_id="
+        .$post->ID
+        ." AND user_id="
+        .$context['user']->id
+        ." ORDER BY created"
+    );
+    $tableName = $wpdb->prefix."rkg_course_liability_meta";
+    $context['responsibilitysurvey'] = $wpdb->get_row(
+        "SELECT * FROM "
+        .$tableName
+        ." WHERE post_id="
+        .$post->ID
+        ." AND user_id="
+        .$context['user']->id
+        ." ORDER BY created"
+    );
+}
+
+if (post_password_required($post->ID)) {
+    Timber::render('single-password.twig', $context);
+} else {
+    Timber::render('single-course.twig', $context);
+}

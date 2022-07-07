@@ -1,0 +1,24 @@
+<div class="rkg-user">
+    {{ userDetail.display_name }}
+    {% if user.can('edit_excursions') %}
+        <div class="rkg-user-details">
+            <div class="rkg-info-close"></div>
+            <a class="rkg-modal-logo" href="{{ function('home_url') }}"><img class="rkg-top-logo" src="{{ site.theme.link }}/assets/img/logo.png" /></a>
+            <div class="rkg-user-details-flex">
+                <table style="text-align: left">
+                    <tr class="only-mobile">
+                        <th style="text-align: center" colspan="2">{{ userDetail.display_name }}</th>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td><a href="mailto:{{ userDetail.user_email }}">{{ userDetail.user_email }}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Tel</th>
+                        <td><a href="tel:{{ userDetail.tel }}">{{ userDetail.tel }}</a></td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    {% endif %}
+</div>
