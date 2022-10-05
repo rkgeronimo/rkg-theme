@@ -65,13 +65,13 @@ class RKGSite extends \Timber\Site
             $context['user']
         );
         $context['actual_courses']            = $this->getActualCourses(
-            $context['signups']['courses']
+            $context['signups']['courses'] ?? null
         );
         $context['actual_excursions']         = $this->getActualExcursions(
-            $context['signups']['excursions']
+            $context['signups']['excursions'] ?? null
         );
         $context['actual_excursions_waiting'] = $this->getActualExcursions(
-            $context['signups']['excursions_waiting']
+            $context['signups']['excursions_waiting'] ?? null
         );
         $context['menu']                      = new \Timber\Menu();
         $context['rkg_user_menu']             = new \Timber\Menu(
