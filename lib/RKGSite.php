@@ -253,7 +253,7 @@ class RKGSite extends \Timber\Site
                 ." WHERE id="
                 .$value
             );
-            if ($coursePost->endtime > $date) {
+            if ($coursePost && $coursePost->endtime > $date) {
                 $courses[] = array(
                     'post' => get_post($value),
                     'meta' => $coursePost,
