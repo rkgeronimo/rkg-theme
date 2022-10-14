@@ -1091,6 +1091,10 @@ input::-ms-input-placeholder, select::-ms-input-placeholder {
         width: 47vw;
 }
 
+.article-content-narrow > .article-body > .wp-block-embed {
+    position: absolute;
+}
+
 .article-content-narrow > .article-body > h2 {
         margin-top: 7vw;
 }
