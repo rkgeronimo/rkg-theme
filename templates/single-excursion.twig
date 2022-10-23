@@ -36,7 +36,7 @@
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
                                     data-date="{{ meta.starttime|date('d.m.Y.') }}">Odjavi se sa liste čekanja</span>
-                        {% else %}
+                        {% elseif meta.limitation <= meta.registered %}
                             <span class="excursion-signup-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
@@ -52,7 +52,7 @@
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
                                     data-date="{{ meta.starttime|date('d.m.Y.') }}">Odjavi se sa liste čekanja</span>
-                        {% else %}
+                        {% elseif meta.limitation <= meta.registered %}
                             <span class="excursion-signup-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
@@ -78,7 +78,7 @@
                             <h2>Tvoji gosti</h2>
                             {%- for guest in myGuests -%}
                             <div class="rkg-user">
-                                Gost: {{ guest.display_name }}
+                                {{ guest.display_name }}
                                 {% if user.can('edit_excursions') %}
                                     <div class="rkg-user-details">
                                         <div class="rkg-info-close"></div>
@@ -105,11 +105,15 @@
                     <h2>Akontacija</h2>
                     <p>{{ meta.price }}</p>
                     {% endif %}
-                    {% if participants is not empty %}
-                    <h2 class="rkg-toggler-title" data-toggle="rkg-signups">Prijavljeni na izlet
+                    
+                    <h2 class="rkg-toggler-title" data-toggle="rkg-signups">Prijavljeni na izlet ({{meta.registered}})
                         <span><i class="fas fa-chevron-down rkg-toggler-icon"></i></span>
                     </h2>
                     <div class="rkg-hidder" id="rkg-signups">
+                    {% if participants is empty %}
+                        <p>Nema prijavljenih osoba.</p>
+                    {% endif %}
+
                     {% if post.ID in signups.excursions %}
                         <a href='mailto:
                         {%- for participant in participants -%}
@@ -122,7 +126,6 @@
                             {% endfor%}
                         {% endif %}
                         '>Pošalji e-mail prijavljenima</a>
-                    {% endif %}
                         {% for participant in participants %}
                             <div>
                                 {% include 'partial/user.twig'  with {'userDetail': participant} %}
