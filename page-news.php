@@ -1,5 +1,5 @@
 <?php
-/* Template Name: courses */
+/* Template Name: news */
 /**
  * The template for displaying all pages.
  *
@@ -49,5 +49,7 @@ foreach ($context['news'] as $key => $value) {
 
 $context['categories']   = get_categories();
 $context['categorie_id'] = $category;
+
+$context['rkg_side'] = Timber::get_widgets('about_right');
 
 Timber::render(array('page-'.$post->post_name.'.twig', 'page-news.twig'), $context);

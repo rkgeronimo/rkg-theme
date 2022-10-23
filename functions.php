@@ -387,7 +387,7 @@ add_action( 'admin_menu', 'change_menu_icon' );
 function change_menu_icon() {
     global $menu;
     foreach ( $menu as $key => $val ) {
-        if ( __('Objave') == $val[0] ) {
+        if ( __('Novosti') == $val[0] ) {
             $menu[$key][6] = 'dashicons-edit';
         }
     }

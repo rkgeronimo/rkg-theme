@@ -5,16 +5,17 @@
 		<article class="post-type-{{post.post_type}}" id="post-{{post.ID}}">
 			<section class="article-content">
 				<h1 class="article-h1">{{post.title}}</h1>
-				<div class="article-body">
-                    <div class="rkg-category-container">
-                        <div class="rkg-news-category-select">
-                            Kategorije&nbsp;<div class="rkg-news-category-select-arrow"></div>
-                        </div>
-                        <a class="rkg-news-category-link{% if (categorie_id == categorie.term_id) %} active{% endif %}" href="{{ function('home_url') }}/index.php?page_id=11" aria-current="page">Sve</a>
-                        {% for categorie in categories %}
-                            <a  class="rkg-news-category-link{% if (categorie_id == categorie.term_id) %} active{% endif %}" href="{{ function('home_url') }}/index.php?page_id=11&cat={{ categorie.term_id }}">{{ categorie.name }}</a>
-                        {% endfor %}
+                <div class="rkg-side">
+                    <h2 class="rkg-toggler" data-toggle="rkg-who-menu">NAVIGACIJA
+                        <span><i class="fas fa-chevron-down rkg-toggler-icon"></i></span>
+                    </h2>
+
+                    <div class="rkg-hidder" id="rkg-who-menu">
+                        {{ rkg_side }}
+                        <hr class="wp-block-separator only-mobile">
                     </div>
+                </div>
+				<div class="article-body">
                     <div class="row-container news-content-container">
                         <div class="row">
                             {% for new in news %}

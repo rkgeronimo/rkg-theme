@@ -329,42 +329,12 @@ button {
         border: 1px solid rgb(183, 183, 183);
 }
 
-.rkg-modal input::-webkit-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
 .rkg-modal input::-moz-placeholder {
             color: #6e6e6e;
             font-weight: 500;
 }
 
-.rkg-modal input:-ms-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
-.rkg-modal input::-ms-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
-input::-webkit-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
 input::-moz-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
-input:-ms-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
-input::-ms-input-placeholder {
             color: #6e6e6e;
             font-weight: 500;
 }
@@ -1035,42 +1005,12 @@ input::-ms-input-placeholder {
         border: 1px solid rgb(183, 183, 183);
 }
 
-.article-content input::-webkit-input-placeholder, .article-content select::-webkit-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
 .article-content input::-moz-placeholder, .article-content select::-moz-placeholder {
             color: #6e6e6e;
             font-weight: 500;
 }
 
-.article-content input:-ms-input-placeholder, .article-content select:-ms-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
-.article-content input::-ms-input-placeholder, .article-content select::-ms-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
-input::-webkit-input-placeholder, select::-webkit-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
 input::-moz-placeholder, select::-moz-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
-input:-ms-input-placeholder, select:-ms-input-placeholder {
-            color: #6e6e6e;
-            font-weight: 500;
-}
-
-input::-ms-input-placeholder, select::-ms-input-placeholder {
             color: #6e6e6e;
             font-weight: 500;
 }
@@ -1089,10 +1029,6 @@ input::-ms-input-placeholder, select::-ms-input-placeholder {
     .article-content-narrow > .article-h1 {
         margin: 0 40vw 4.5vw 12.5vw;
         width: 47vw;
-}
-
-.article-content-narrow > .article-body > .wp-block-embed {
-    position: absolute;
 }
 
 .article-content-narrow > .article-body > h2 {

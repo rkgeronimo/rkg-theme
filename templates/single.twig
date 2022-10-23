@@ -5,19 +5,31 @@
 		<article class="post-type-{{ post.post_type }}" id="post-{{ post.ID }}">
 			<section class="article-content article-content-narrow">
 				<h1 class="article-h1">{{ post.title }}</h1>
+                
                 <div class="rkg-side">
                     <ul class="menu">
+                        {% if news.length != 0 %}
                         <li class="menu-item menu-item-type-post_type menu-item-object-page current-menu-item page_item page-item-120 current_page_item menu-item-857"><a title="
-                        " href="{{ function('home_url') }}/index.php/Aktualno/" aria-current="page">Aktualno</a>
+                        " href="#" aria-current="page">Ostale novosti</a>
                         <ul class="sub-menu">
-                            {% for categorie in categories %}
-                                <li id="menu-item-856" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-856"><a title="" href="{{ function('home_url') }}/index.php/Aktualno/?cat={{ categorie.term_id }}">– {{ categorie.name }}</a></li>
+                            {% for new in news %}
+                                <li id="menu-item-856" class="menu-item menu-item-type-post_type menu-item-object-page menu-item-856"><a title="" href="{{ new.guid }}">{{ new.post_title }}</a></li>
                             {% endfor %}
                         </ul>
                         </li>
+                        {% endif %}
                     </ul>
-                    <hr class="wp-block-separator only-mobile">
+
+                    <h2 class="rkg-toggler" data-toggle="rkg-who-menu">NAVIGACIJA
+                        <span><i class="fas fa-chevron-down rkg-toggler-icon"></i></span>
+                    </h2>
+                    
+                    <div class="rkg-hidder" id="rkg-who-menu">
+                        {{ rkg_side }}
+                        <hr class="wp-block-separator only-mobile">
+                    </div>
                 </div>
+                
 				<div class="article-body">
 					{{post.content}}
 				</div>

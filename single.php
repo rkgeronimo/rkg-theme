@@ -14,6 +14,8 @@ $post = Timber::query_post();
 $context['post'] = $post;
 $context['categories'] = get_categories();
 
+$context['rkg_side'] = Timber::get_widgets('about_right');
+
 if ( post_password_required( $post->ID ) ) {
 	Timber::render( 'single-password.twig', $context );
 } else {
