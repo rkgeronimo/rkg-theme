@@ -133,7 +133,7 @@
                         {% endfor%}
                         {% if guests is not empty %}
                             {%- for guest in guests -%}
-                                {% include 'partial/user.twig'  with {'userDetail': guest} %}
+                                {% include 'partial/user.twig'  with {'userDetail': guest, 'isGuest': true } %}
                             {% endfor%}
                         {% endif %}
                     {% endif %}
