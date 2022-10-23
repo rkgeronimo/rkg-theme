@@ -154,8 +154,8 @@
                 </div>
                 <div class="rkg-article-meta course-category">Izlet</div>
 				<h1 class="article-h1-course">{{ post.title }}</h1>
-                <div class="rkg-article-meta course-instructor">Organizator: {% include 'partial/user.twig'  with {'userDetail': post.author} %}</div>
-                <div class="rkg-article-meta course-date">{{ meta.starttime|date('d.n.') }} - {{ meta.endtime|date('d.n.') }}</div>
+                <h1 class="article-h1-course">{{ meta.starttime|date('d.n.') }} - {{ meta.endtime|date('d.n.Y.') }}</h1>
+                <div class="rkg-article-meta course-instructor">U organizaciji: {% include 'partial/user.twig'  with {'userDetail': post.author} %}</div>
 				<div class="article-body">
 					{{post.content}}
 				</div>
