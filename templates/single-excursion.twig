@@ -126,7 +126,7 @@
                         <p>Nema prijavljenih osoba.</p>
                     {% endif %}
 
-                    {% if post.ID in signups.excursions %}
+                    {% if user.ID == post.author.id %}
                         <a href='mailto:
                         {%- for participant in participants -%}
                         {%- if loop.index0 > 0 -%},{%- endif -%}
@@ -139,20 +139,21 @@
                             {% endfor%}
                         {% endif %}
                         '>Pošalji e-mail prijavljenima</a>
-                        {% for participant in participants %}
-                            <div>
-                                {% include 'partial/user.twig'  with {'userDetail': participant} %}
-                            </div>
-                        {% endfor%}
+                    {% endif %}
 
-                        <h2 class="rkg-toggler-title" data-toggle="rkg-signups">Gosti ({{guests|length}})
-                            <span><i class="fas fa-chevron-down rkg-toggler-icon"></i></span>
-                        </h2>
-                        {% if guests is not empty %}
-                            {%- for guest in guests -%}
-                                {% include 'partial/user.twig'  with {'userDetail': guest} %}
-                            {% endfor%}
-                        {% endif %}
+                    {% for participant in participants %}
+                        <div>
+                            {% include 'partial/user.twig'  with {'userDetail': participant} %}
+                        </div>
+                    {% endfor%}
+
+                    <h2 class="rkg-toggler-title" data-toggle="rkg-signups">Gosti ({{guests|length}})
+                        <span><i class="fas fa-chevron-down rkg-toggler-icon"></i></span>
+                    </h2>
+                    {% if guests is not empty %}
+                        {%- for guest in guests -%}
+                            {% include 'partial/user.twig'  with {'userDetail': guest} %}
+                        {% endfor%}
                     {% endif %}
                     </div>
                     {% if replacements is not empty %}
