@@ -71,9 +71,15 @@
                             <a href="#" class="course-page-link" id="excursion-signup-gear">Promjena opreme</a>
                             {% endif %}
                         </div>
-                        <div>
-                            <a href="#" class="course-page-link" id="excursion-signup-guest">Prijavi gosta</a>
-                        </div>
+
+                        {% if meta.guests_limit and meta.registered+1 > meta.limitation %}
+                            <p>Izlet popunjen, prijava gostiju nije moguća.</p>
+                        {% else %}
+                            <div>
+                                <a href="#" class="course-page-link" id="excursion-signup-guest">Prijavi gosta</a>
+                            </div>
+                        {% endif %}
+
                         {% if myGuests is not empty %}
                             <h2>Tvoji gosti</h2>
                             {%- for guest in myGuests -%}
