@@ -17,7 +17,7 @@ $post            = Timber::query_post();
 $context['post'] = $post;
 $tableName       = $wpdb->prefix."rkg_excursion_meta";
 $context['meta'] = $wpdb->get_row(
-    "SELECT id, latitude, longitude, canceled"
+    "SELECT id, latitude, longitude, canceled, guests_limit"
     .", price, limitation, registered, starttime, endtime, deadline FROM "
     .$tableName
     ." WHERE id="

@@ -19,6 +19,12 @@
                     </div>
                     <div class="excursion-single-nav">
                     </div>
+                    {% if meta.guests_limit == true %}
+                    {% set totalParticipants = participants|length + guests|length %}
+                    {% else %}
+                    {% set totalParticipants = participants|length %}
+                    {% endif %}
+
                     {% if meta.canceled %}
                         <button class="course-signup course-disabled-button">Otkazan</button>
                     {% elseif meta.endtime < now|date('Y-m-d') %}
@@ -29,14 +35,14 @@
                                 data-name="{{ post.title }}">Odjava</button>
                     {% elseif meta.deadline < now|date('Y-m-d') %}
                         <button class="course-signup course-disabled-button">Zaključan</button>
-                    {% elseif meta.limitation <= meta.registered %}
+                    {% elseif meta.limitation <= totalParticipants %}
                         <button class="course-signup course-disabled-button">Popunjen</button>
                         {% if post.ID in signups.excursions_waiting %}
                             <span class="excursion-signout-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
                                     data-date="{{ meta.starttime|date('d.m.Y.') }}">Odjavi se sa liste čekanja</span>
-                        {% elseif meta.limitation <= meta.registered %}
+                        {% elseif meta.limitation <= totalParticipants %}
                             <span class="excursion-signup-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
@@ -52,7 +58,7 @@
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
                                     data-date="{{ meta.starttime|date('d.m.Y.') }}">Odjavi se sa liste čekanja</span>
-                        {% elseif meta.limitation <= meta.registered %}
+                        {% elseif meta.limitation <= totalParticipants %}
                             <span class="excursion-signup-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
@@ -72,7 +78,7 @@
                             {% endif %}
                         </div>
 
-                        {% if meta.guests_limit and meta.registered+1 > meta.limitation %}
+                        {% if meta.guests_limit == true and participants|length >= meta.limitation %}
                             <p>Izlet popunjen, prijava gostiju nije moguća.</p>
                         {% else %}
                             <div>
@@ -112,7 +118,7 @@
                     <p>{{ meta.price }}</p>
                     {% endif %}
                     
-                    <h2 class="rkg-toggler-title" data-toggle="rkg-signups">Prijavljeni na izlet ({{meta.registered}})
+                    <h2 class="rkg-toggler-title" data-toggle="rkg-signups">Prijavljeni na izlet ({{participants|length}})
                         <span><i class="fas fa-chevron-down rkg-toggler-icon"></i></span>
                     </h2>
                     <div class="rkg-hidder" id="rkg-signups">
@@ -126,6 +132,7 @@
                         {%- if loop.index0 > 0 -%},{%- endif -%}
                         {{- participant.user_email -}}
                         {%- endfor -%}
+                    
                         {% if guests is not empty %}
                             {%- for guest in guests -%}
                             ,{{ guest.user_email }}
@@ -137,15 +144,19 @@
                                 {% include 'partial/user.twig'  with {'userDetail': participant} %}
                             </div>
                         {% endfor%}
+
+                        <h2 class="rkg-toggler-title" data-toggle="rkg-signups">Gosti ({{guests|length}})
+                            <span><i class="fas fa-chevron-down rkg-toggler-icon"></i></span>
+                        </h2>
                         {% if guests is not empty %}
                             {%- for guest in guests -%}
-                                {% include 'partial/user.twig'  with {'userDetail': guest, 'isGuest': true } %}
+                                {% include 'partial/user.twig'  with {'userDetail': guest} %}
                             {% endfor%}
                         {% endif %}
                     {% endif %}
                     </div>
                     {% if replacements is not empty %}
-                    <h2 class="rkg-toggler-title" data-toggle="rkg-waitings">Lista čekanja
+                    <h2 class="rkg-toggler-title" data-toggle="rkg-waitings">Lista čekanja ({{replacements|length}})
                         <span><i class="fas fa-chevron-down rkg-toggler-icon"></i></span>
                     </h2>
                     <div class="rkg-hidder" id="rkg-waitings">

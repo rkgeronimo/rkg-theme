@@ -1,10 +1,6 @@
 <div class="rkg-user">
     {{ userDetail.display_name }}
 
-    {% if isGuest is not empty %}
-        <span>(gost)</span>
-    {% endif %}
-
     {% if user.can('edit_excursions') %}
         <div class="rkg-user-details">
             <div class="rkg-info-close"></div>
