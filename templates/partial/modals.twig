@@ -50,7 +50,7 @@
         {% endif %}
         <form class="form-horizontal course-signup-form" id="additional-details-form" role="form">
             {% if user.dob is empty or user.pob is empty or user.oib is empty or user.tel is empty %}
-                <p>Na korak si da postaneš tečajac</p>
+                <p>Na korak si da postaneš dio tečaja!</p>
                 <p>Trebaju nam još ove informacije od tebe</p>
             {% else %}
                 <p>Korak si do prijave</p>
@@ -77,20 +77,20 @@
             <input type="submit" class="btn btn-primary" id="btn-additional-details" value="Prijava na tečaj" />
         </form>
         <form class="form-horizontal course-signout-form" id="course-signout-form" role="form">
-            <p>Žao nam je što nemožeš roniti s nama.</p>
-            <p>Odjavi se sa tečaja: "<span class="course-signout-name"></span>"</p>
+            <p>Žao nam je što ne možeš roniti s nama.</p>
+            <p>Odjavljuješ se sa tečaja: "<span class="course-signout-name"></span>"</p>
             <input type="hidden" name="signout-course" id="signout-course" value="" />
             <input type="submit" class="btn btn-primary" id="btn-signout-course" value="Odjava" />
         </form>
         <form class="form-horizontal course-signout-form" id="excursion-signout-form" role="form">
             <p>Ne želiš roniti s nama?</p>
-            <p>Odjavi se sa izleta: "<span class="excursion-signout-name"></span>"</p>
+            <p>Odjavljuješ se sa izleta: "<span class="excursion-signout-name"></span>"</p>
             <input type="hidden" name="signout-excursion" id="signout-excursion" value="" />
             <input type="submit" class="btn btn-primary" id="btn-signout-excursion" value="Odjava" />
         </form>
         <form class="form-horizontal course-signout-form" id="excursion-signout-waiting-form" role="form">
             <p>Ne želiš roniti s nama?</p>
-            <p>Odjavi se sa liste čekanja za izlet: "<span class="excursion-signout-name"></span>"</p>
+            <p>Odjavljuješ se sa liste čekanja za izlet: "<span class="excursion-signout-name"></span>"</p>
             <input type="hidden" name="signout-excursion" id="signout-excursion" value="" />
             <input type="submit" class="btn btn-primary" id="btn-signout-waiting-excursion" value="Odjava" />
         </form>
@@ -101,8 +101,8 @@
             <button class="course-signup-ok-close">U redu</button>
         </form>
         <form class="form-horizontal course-signout-form" id="course-not-interested-form" role="form">
-            <p>Žao nam je što si izgubio interest za tečaj</p>
-            <p>Nečeš biti obaviješten kada se objavi termin za tečaj.</p>
+            <p>Žao nam je što ne ideš na tečaj</p>
+            <p>Obavijest za termin tečaja je isključena.</p>
             <input type="hidden" name="signout-course" id="not-interested-course-id" value="" />
             <button class="course-signup-ok-close">U redu</button>
         </form>
@@ -142,7 +142,7 @@
         {% include 'partial/gear.twig' %}
         <div class="modal-div" id="course-signup-ok">
             <p>Prijava je zaprimljena!</p>
-            <p>Preostaje ti uplata prve rate tečaja kako bi postao <br />Geronimo tačajac!</p>
+            <p>Preostaje ti uplata prve rate tečaja kako bi postao <br />Geronimo tečajac ili tečajka!</p>
             <a href="#" class="rkg-button" id="course-signup-modal-link">U redu</a>
         </div>
         <div class="modal-div" id="course-signup-pay">
