@@ -512,3 +512,17 @@ function hide_publishing_actions(){
 }
 add_action('admin_head-post.php', 'hide_publishing_actions');
 add_action('admin_head-post-new.php', 'hide_publishing_actions');
+
+function translate_and_override_slugs( $args, $post_type ) {
+
+    if ('course' === $post_type) {
+        $args['rewrite']['slug'] = 'tecaj';
+    } else if ('excursion' === $post_type) {
+        $args['rewrite']['slug'] = 'izlet';
+    } else if ('rkg-post' === $post_type) {
+        $args['rewrite']['slug'] = 'vijest';
+    } 
+
+    return $args;
+}
+add_filter('register_post_type_args', 'translate_and_override_slugs', 10, 2);
