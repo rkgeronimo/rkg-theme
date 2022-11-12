@@ -80,6 +80,12 @@ class RKGSite extends \Timber\Site
         $context['site']                      = $this;
 
         if ($context['user']
+            && !array_key_exists('member', (array) $context['user']->roles)
+        ) {
+            $context['memberDebth'] = date('Y');;
+        }
+        // Check if membership paid for the next year
+        else if ($context['user']
             && array_key_exists('member', (array) $context['user']->roles)
         ) {
             $now   = strtotime("now");

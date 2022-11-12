@@ -14,7 +14,7 @@
 
             {% if memberDebth is not empty %}
             <p><a href="#" class="ShowPayModal"
-                    data-title="Plaćanje članarine za {{ memberDebth }}"
+                    data-title="Plaćanje članarine za {{ memberDebth }}."
                     data-barcode_text="HRVHUB30
 HRK
 000000000030000
@@ -28,14 +28,14 @@ HR2524840081102706472
 HR67
 {{ user.oib }}
 
-{{ user.display_name }} - Članarina za {{ memberDebth }}"
+{{ user.display_name }} - Članarina za {{ memberDebth }}."
                     data-iznos="300,00 kn"
                     data-primatelj="RK GERONIMO, Trg Krešimira Ćosića 10, Zagreb"
                     data-iban="HR2524840081102706472"
                     data-model_placanja="HR67"
                     data-poziv_na_broj="{{ user.oib }}"
-                    data-opis_placanja="{{ user.display_name }} - članarina za {{ memberDebth }}"
-                    >Članarina nije plaćena za {{ memberDebth }} godinu</a></p>
+                    data-opis_placanja="{{ user.display_name }} - članarina za {{ memberDebth }}."
+                    >Članarina nije plaćena za {{ memberDebth }}. godinu</a></p>
             {% endif %}
         </div>
         {# <div class="rkg-profile-meni-item-group"> #}
@@ -54,7 +54,7 @@ HR67
         {% if actual_excursions|length == 1 %}
             <a href="{{ actual_excursions[0].post.guid }}" class="dashicons-before dashicons-palmtree rkg-profile-meni-item">Prijavljeni izlet</a>
         {% elseif actual_excursions|length > 1 %}
-            <a href="#" class="dashicons-before dashicons-palmtree rkg-profile-meni-item rkg-profile-meni-toggle">Prijavljeni Izleti</a>
+            <a href="#" class="dashicons-before dashicons-palmtree rkg-profile-meni-item rkg-profile-meni-toggle">Prijavljeni izleti</a>
             <ul>
                 {% for actual_excursion in actual_excursions %}
                     <li>
