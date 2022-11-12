@@ -65,7 +65,7 @@ class Login
         $info['user_password'] = $_POST['password'];
         $info['remember']      = true;
 
-        $userSignon = wp_signon($info, false);
+        $userSignon = wp_signon($info, is_ssl());
         if (is_wp_error($userSignon)) {
             echo json_encode(array(
                 'status' => 1,
