@@ -164,19 +164,19 @@ class UsersList
     public function paySubscription($bulkActions)
     {
         $bulkActions['payCurrent'] = __(
-            'Plačena članarina za '.date("Y"),
+            'Plaćena članarina za '.date("Y"),
             'payCurrent'
         );
         $bulkActions['payNext']    = __(
-            'Plačena članarina za '.(date("Y")+1),
+            'Plaćena članarina za '.(date("Y")+1),
             'payNext'
         );
         $bulkActions['payCurrentNot'] = __(
-            'Nije plačena članarina za '.date("Y"),
+            'Nije plaćena članarina za '.date("Y"),
             'payCurrent'
         );
         $bulkActions['payNextNot']    = __(
-            'Nije plačena članarina za '.(date("Y")+1),
+            'Nije plaćena članarina za '.(date("Y")+1),
             'payNext'
         );
         $bulkActions['setHonorMember']    = __(
