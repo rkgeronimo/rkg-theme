@@ -526,3 +526,46 @@ function translate_and_override_slugs( $args, $post_type ) {
     return $args;
 }
 add_filter('register_post_type_args', 'translate_and_override_slugs', 10, 2);
+
+
+// SEO stuff
+function get_meta_and_og_tags() {
+    global $post;
+
+    echo '<meta property="og:site_name" content="' .get_bloginfo(). '">';
+    echo '<meta property="og:url" content="' .get_permalink(). '">';
+
+    if ( is_front_page() ) {
+        echo '<meta property="og:title" content="' .get_bloginfo(). '">';
+        echo '<meta name="og:description" content="' . get_bloginfo('description') . '" />' . "\n";
+        $imgurl = 'app/themes/rkg-theme/assets/img/geronimo-meta.png';
+        echo '<meta property="og:image" content="' .get_permalink().$imgurl.'">';
+    } else {
+        echo '<meta property="og:title" content="'.trim(wp_title(' ', false, 'right'))." - ".get_bloginfo(). '">';
+    }
+    
+    if ( is_front_page() ) {
+
+    }
+
+    else if ( is_singular() ) {
+        $des_post = strip_tags($post->post_content);
+        $des_post = strip_shortcodes($post->post_content);
+        $des_post = str_replace(array("\n", "\r", "\t"), ' ', $des_post);
+        $des_post = strip_tags($des_post);
+        $descriptionLength = strlen($des_post);
+        $des_post = mb_substr($des_post, 0, 260, 'utf8' );
+        if ($descriptionLength > 260) $des_post= $des_post . "...";
+
+        echo '<meta name="description" content="' . $des_post . '" />' . "\n";
+        echo '<meta property="og:description" content="' . $des_post . '">';
+    }
+
+    else if ( is_category() ) {
+        $des_cat = strip_tags(category_description());
+        echo '<meta name="description" content="' . $des_cat . '" />' . "\n";
+        echo '<meta name="og:description" content="' . $des_cat . '" />' . "\n";
+    }
+}
+
+add_action( 'wp_head', 'get_meta_and_og_tags', 2);
