@@ -107,7 +107,7 @@ foreach ($context['excursions'] as $key => $value) {
     $context['excursions'][$key]->link = get_permalink($value->id);
 }
 
-if (!current_user_can('read_excursions')) {
+if (!current_user_can('member_access')) {
     Timber::render('single-no-pasaran.twig', $context);
 } else {
     Timber::render(array('page-'.$post->post_name.'.twig', 'page-excursions.twig'), $context);
