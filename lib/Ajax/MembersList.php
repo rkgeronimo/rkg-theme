@@ -41,6 +41,7 @@ class MembersList
         $context['members'] = get_users(array(
             'role__not_in' => array('user'),
             'orderby'      => 'display_name',
+            'role'    => 'member',
         ));
         foreach ($context['members'] as $key => $value) {
             $context['members'][$key]->rkg = get_user_meta($value->ID);
