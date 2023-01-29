@@ -53,7 +53,7 @@ HR67
 {{ user.oib }}
 
 {{ metaTemplate.payment_desc }} - {{ user.display_name }}"
-                    data-iznos="{{ metaTemplate.payment_price }} kn"
+                    data-iznos="{{ metaTemplate.payment_price }} EUR"
                     data-primatelj="RK GERONIMO, Trg Krešimira Ćosića 10, Zagreb"
                     data-iban="HR2524840081102706472"
                     data-model_placanja="HR67"
@@ -62,9 +62,9 @@ HR67
                     >Podaci za uplatu</a>
                         </div>
                     {% elseif meta.deadline < now|date('Y-m-d') %}
-                        <button class="course-signup course-disabled-button">Istekle prijave</button>
+                        <button disabled class="course-disabled-button">Istekle prijave</button>
                     {% elseif meta.limitation <= meta.registered %}
-                        <button class="course-signup course-disabled-button">Popunjeno</button>
+                        <button class="course-disabled-button">Popunjeno</button>
                     {% else %}
                         <button class="course-signup course-signup-button"
                                 data-course="{{ post.ID }}"
