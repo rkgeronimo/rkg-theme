@@ -17,7 +17,7 @@ $post            = Timber::query_post();
 $context['post'] = $post;
 $tableName       = $wpdb->prefix."rkg_excursion_meta";
 $context['meta'] = $wpdb->get_row(
-    "SELECT id, latitude, longitude, canceled, guests_limit"
+    "SELECT id, leaders, latitude, longitude, canceled, guests_limit"
     .", price, limitation, registered, starttime, endtime, deadline FROM "
     .$tableName
     ." WHERE id="
@@ -89,8 +89,18 @@ $participants = $wpdb->get_col(
     ." ORDER BY created"
 );
 
+
 foreach ($participants as $value) {
-    $context['participants'][] = new Timber\User($value);
+    // Load participants data with complete user info
+    $user = new Timber\User($value);
+    $context['participants'][] = $user;
+
+    // Check if still needs reserved spots for leaders (dive masters)
+    if ($context['meta']->leaders != '0') {
+        if (in_array($user->rc, array('R3', 'R4', 'I1', 'I2', 'I3'))) {
+            $context['meta']->leaders -= 1;
+        }
+    }
 }
 
 $tableName = $wpdb->prefix."rkg_excursion_waiting";
