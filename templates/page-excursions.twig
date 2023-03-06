@@ -55,9 +55,9 @@
                         {%- elseif excursion.id in signups.excursions_waiting %}
 <span class="dashicons dashicons-controls-pause{%if excursion.endtime < now|date('Y-m-d') %} expired{% endif %}"></span>
                         {% endif -%}
-                        <div class="excursion-block-date{%if excursion.endtime < now|date('Y-m-d') %} expired{% endif %}">{{ excursion.starttime|date('d.m.Y.') }} - {{ excursion.endtime|date('d.m.Y.') }}</div>
+                        <div class="excursion-block-date{%if excursion.endtime < now|date('Y-m-d') %} expired{% endif %}">{{ excursion.starttime|date('j.n.Y.') }} - {{ excursion.endtime|date('j.n.Y.') }}</div>
                         <div class="excursion-block-p">Organizator: {{ excursion.display_name }}</div>
-                        <div class="excursion-block-p">Planirano osoba: {{ excursion.limitation }}&emsp;Slobodnih mjesta: {{ excursion.limitation - excursion.registered }}&emsp;Zadnji dan prijave: {{ excursion.deadline|date('d.m.Y.') }}</div>
+                        <div class="excursion-block-p">Planirano osoba: {{ excursion.limitation }}&emsp;Slobodnih mjesta: {{ excursion.limitation - excursion.registered }}&emsp;Zadnji dan prijave: {{ excursion.deadline|date('j.n.Y.') }}</div>
                         <table class="excursion-block-t"><tbody>
                                 <tr>
                                     <td>

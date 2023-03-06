@@ -44,28 +44,28 @@
                             <span class="excursion-signout-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
-                                    data-date="{{ meta.starttime|date('d.m.Y.') }}">Odjavi se sa liste čekanja</span>
+                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Odjavi se sa liste čekanja</span>
                         {% elseif meta.limitation <= totalParticipants %}
                             <span class="excursion-signup-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
-                                    data-date="{{ meta.starttime|date('d.m.Y.') }}">Zabilježi se na listu čekanja</span>
+                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Zabilježi se na listu čekanja</span>
                         {% endif %}
                     {% else %}
                         <button class="excursion-signup course-signup-button"
                                 data-post="{{ post.ID }}"
                                 data-name="{{ post.title }}"
-                                data-date="{{ meta.starttime|date('d.m.Y.') }}">Prijava</button>
+                                data-date="{{ meta.starttime|date('j.n.Y.') }}">Prijava</button>
                         {% if post.ID in signups.excursions_waiting %}
                             <span class="excursion-signout-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
-                                    data-date="{{ meta.starttime|date('d.m.Y.') }}">Odjavi se sa liste čekanja</span>
+                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Odjavi se sa liste čekanja</span>
                         {% elseif meta.limitation <= totalParticipants %}
                             <span class="excursion-signup-waiting"
                                      data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
-                                    data-date="{{ meta.starttime|date('d.m.Y.') }}">Zabilježi se na listu čekanja</span>
+                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Zabilježi se na listu čekanja</span>
                         {% endif %}
                     {% endif %}
                         <p>
@@ -115,7 +115,7 @@
                         {% endif %}
                     {% endif %}
                     <h2>Rok prijave</h2>
-                    <p>{{ meta.deadline|date('d.m.Y.') }}</p>
+                    <p>{{ meta.deadline|date('j.n.Y.') }}</p>
                     {% if meta.price is not empty %}
                     <h2>Akontacija</h2>
                     <p>{{ meta.price }}</p>
@@ -186,7 +186,7 @@
                 {% endif %}
 
 				<h1 class="article-h1-course">{{ post.title }}</h1>
-                <h1 class="article-h1-course">{{ meta.starttime|date('d.n.') }} - {{ meta.endtime|date('d.n.Y.') }}</h1>
+                <h1 class="article-h1-course">{{ meta.starttime|date('j.n.') }} - {{ meta.endtime|date('j.n.Y.') }}</h1>
                 <div class="rkg-article-meta course-instructor">U organizaciji: {% include 'partial/user.twig'  with {'userDetail': post.author} %}</div>
 				<div class="article-body">
 					{{post.content}}
