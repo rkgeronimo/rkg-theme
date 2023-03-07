@@ -17,7 +17,7 @@
                     data-title="Plaćanje članarine za {{ memberDebth }}."
                     data-barcode_text="HRVHUB30
 EUR
-000000000030000
+000000000004000
 {{ user.display_name }}
 
 
@@ -26,14 +26,14 @@ Trg Krešimira Ćosića 10
 10000 Zagreb
 HR2524840081102706472
 HR67
-{{ user.oib }}
+{{ user.oib ? user.oib : "OIB" }}
 
 {{ user.display_name }} - Članarina za {{ memberDebth }}."
                     data-iznos="40 EUR"
                     data-primatelj="RK GERONIMO, Trg Krešimira Ćosića 10, Zagreb"
                     data-iban="HR2524840081102706472"
                     data-model_placanja="HR67"
-                    data-poziv_na_broj="{{ user.oib }}"
+                    data-poziv_na_broj="{{ user.oib ? user.oib : "OIB" }}"
                     data-opis_placanja="{{ user.display_name }} - članarina za {{ memberDebth }}."
                     >Članarina nije plaćena za {{ memberDebth }}. godinu</a></p>
             {% endif %}
