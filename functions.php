@@ -568,4 +568,18 @@ function get_meta_and_og_tags() {
     }
 }
 
-add_action( 'wp_head', 'get_meta_and_og_tags', 2);
+add_action('wp_head', 'get_meta_and_og_tags', 2);
+
+add_filter('login_url', 'login_url_to_homepage', 10, 3);
+
+function login_url_to_homepage($login_url, $redirect, $force_reauth) {
+	$login_url = site_url();
+	if ( ! empty( $redirect ) ) {
+		$login_url = add_query_arg( 'redirect_to', urlencode( $redirect ), $login_url );
+	}
+	if ( $force_reauth ) {
+		$login_url = add_query_arg( 'reauth', '1', $login_url );
+	}
+	return $login_url;
+}
+
