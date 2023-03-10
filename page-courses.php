@@ -31,7 +31,7 @@ $tableName          = $wpdb->prefix."rkg_course_meta";
 $firstJoin          = $wpdb->prefix."rkg_course_template";
 $secondJoin         = $wpdb->prefix."posts";
 $context['courses'] = $wpdb->get_results("SELECT rcm.id, rcm.category AS cat, "
-    ."rct.category, rcm.starttime, rcm.deadline, rct.name, rct.priority, "
+    ."rct.category, rcm.starttime, rcm.endtime, rcm.deadline, rct.name, rct.priority, "
     ."p.post_title, p.post_content FROM ".$tableName." AS rcm "
     ."INNER JOIN ".$firstJoin." AS rct ON rcm.category = rct.id "
     ."INNER JOIN ".$secondJoin." AS p ON rcm.id = p.id "
