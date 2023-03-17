@@ -137,13 +137,13 @@
                     {% if user.ID == post.author.id %}
                         <a href='mailto:
                         {%- for participant in participants -%}
-                        {%- if loop.index0 > 0 -%},{%- endif -%}
+                        {%- if loop.index0 > 0 -%};{%- endif -%}
                         {{- participant.user_email -}}
                         {%- endfor -%}
                     
                         {% if guests is not empty %}
                             {%- for guest in guests -%}
-                            ,{{ guest.user_email }}
+                            ;{{ guest.user_email }}
                             {% endfor%}
                         {% endif %}
                         '>Pošalji e-mail prijavljenima</a>

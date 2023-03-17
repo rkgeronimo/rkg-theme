@@ -31,7 +31,7 @@
                             <a href='mailto:
                             {%- for student in students -%}
                             {%- if loop.index0 > 0 -%}
-                            ,
+                            ;
                             {%- endif -%}
                             {{ student.user_email }}
                     {% endfor%}
