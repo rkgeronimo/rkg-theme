@@ -187,7 +187,7 @@
 
 				<h1 class="article-h1-course">{{ post.title }}</h1>
                 <h1 class="article-h1-course">{{ meta.starttime|date('j.n.') }} - {{ meta.endtime|date('j.n.Y.') }}</h1>
-                <div class="rkg-article-meta course-instructor">U organizaciji: {% include 'partial/user.twig'  with {'userDetail': post.author} %}</div>
+                <div class="rkg-article-meta course-instructor">Izlet organizira: {% include 'partial/user.twig'  with {'userDetail': post.author} %}</div>
 				<div class="article-body">
 					{{post.content}}
 				</div>

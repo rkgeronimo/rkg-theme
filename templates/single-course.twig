@@ -7,7 +7,7 @@
                 <div class="rkg-article-meta course-category">{{ metaTemplate.category }}</div>
 				<h1 class="article-h1-course">{{ post.title }}</h1>
                 <div class="rkg-article-meta course-instructor">
-                    Instruktor: <span class="course-instructor-name">{% include 'partial/user.twig'  with {'userDetail': organiser} %}</span>
+                    Tečaj vodi: <span class="course-instructor-name">{% include 'partial/user.twig'  with {'userDetail': organiser} %}</span>
                 </div>
                 <div class="rkg-article-meta course-date">{{ meta.starttime|date('j.n.') }} - {{ meta.endtime|date('j.n.') }}</div>
                 <div class="rkg-side">
