@@ -29,17 +29,17 @@
                     {% endif %}
 
                     {% if meta.canceled %}
-                        <button class="course-signup course-disabled-button">Otkazan</button>
+                        <button class="course-disabled-button">Otkazan</button>
                     {% elseif meta.endtime < now|date('Y-m-d') %}
-                        <button class="course-signup course-disabled-button">Prošao</button>
+                        <button class="course-disabled-button">Prošao</button>
                     {% elseif post.ID in signups.excursions %}
                         <button class="excursion-signout course-signout-button"
                                 data-post="{{ post.ID }}"
                                 data-name="{{ post.title }}">Odjava</button>
                     {% elseif meta.deadline < now|date('Y-m-d') %}
-                        <button class="course-signup course-disabled-button">Zaključan</button>
+                        <button class="course-disabled-button">Zaključan</button>
                     {% elseif meta.limitation <= totalParticipants %}
-                        <button class="course-signup course-disabled-button">Popunjen</button>
+                        <button class="course-disabled-button">Popunjen</button>
                         {% if post.ID in signups.excursions_waiting %}
                             <span class="excursion-signout-waiting"
                                      data-post="{{ post.ID }}"
@@ -160,7 +160,9 @@
                     </h2>
                     {% if guests is not empty %}
                         {%- for guest in guests -%}
-                            {% include 'partial/user.twig'  with {'userDetail': guest} %}
+                            <div>
+                                {% include 'partial/user.twig'  with {'userDetail': guest} %}
+                            </div>
                         {% endfor%}
                     {% endif %}
                     </div>
