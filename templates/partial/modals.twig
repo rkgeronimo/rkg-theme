@@ -35,7 +35,7 @@
                     <input type="password" name="vb_pass" id="vb_pass" value="" placeholder="Lozinka" class="form-control" required minlength="6" />
                 </p>
                 <p><span class="rkg-input-size"><input type="checkbox" name="news" value="yes" class="form-control"> Želim primati obavijesti kluba na mail.</span></p>
-                <p><span class="rkg-input-size"><input type="checkbox" name="vehicle1" value="Bike" class="form-control" required> <a href="{{ http_host }}/?page_id=21" target="_blank">Slažem s obradom podataka</a> sukladno <a href="{{ http_host }}/?page_id=17" target="_blank">politici privatnosti</a>.</span></p>
+                <p><span class="rkg-input-size"><input type="checkbox" name="vehicle1" value="Bike" class="form-control" required> <a href="{{ http_host }}/?page_id=19" target="_blank">Slažem s obradom podataka</a> sukladno <a href="{{ http_host }}/?page_id=17" target="_blank">politici privatnosti</a>.</span></p>
                 {{ function('wp_nonce_field', 'vb_new_user','vb_new_user_nonce', true, true) }}
                 <input type="submit" class="button" id="btn-new-user" value="Registracija" />
             </form>
@@ -72,7 +72,7 @@
                 <input type="text" name="oib" id="oib" value="{{ user.oib }}" placeholder="OIB" class="form-control" required minlength="11" minlength="11" pattern="[0-9]+" />
             </p>
             <p>
-                <input type="text" name="tel" id="tel" value="{{ user.tel }}" placeholder="Broj telefona" class="form-control" required />
+                <input type="text" name="tel" id="tel" value="{{ user.tel }}" placeholder="Broj mobitela" class="form-control" required />
             </p>
             <input type="hidden" name="signup-course" id="signup-course" value="" />
             <input type="submit" class="btn btn-primary" id="btn-additional-details" value="Prijava na tečaj" />
@@ -116,7 +116,7 @@
                 <input type="email" name="email" value="" placeholder="E-mail" class="form-control" required />
             </p>
             <p>
-                <input type="tel" name="tel" value="" placeholder="Broj telefona" class="form-control" required minlength="6" />
+                <input type="tel" name="tel" value="" placeholder="Broj mobitela" class="form-control" required minlength="6" />
             </p>
             <p><span class="rkg-input-size"><input type="checkbox" name="gdpr" value="gdpr" class="form-control" required> Potvrđujem da imam dozvolu korištenja osobnih podataka osobe koju prijavljujem na izlet. Osobni podaci gosta koristiti će se isključivo u svrhu organizacije izleta.</p>
             <input type="hidden" name="post" value="{{ post.id }}" />
@@ -158,7 +158,8 @@
         </div>
         <div class="modal-div" id="excursion-signup-waiting-ok">
             <p>Prijava je zaprimljena, na listi čekanja si.</p>
-            <p>Dobiti ćeš informaciju ako će biti slobodno mjesto.</p>
+            <p>Lista čekanja je informativnog karaktera za potrebe organizatora,</br> ako dođe do promjene prijavljenih.</p>
+            <p><b>U slučaju slobodnog mjesta, potrebno je samostalno se prijaviti na izlet.</b></p>
             <button class="course-signup-ok-close">U redu</button>
         </div>
         <div class="modal-div" id="rkg-moddal-members">
