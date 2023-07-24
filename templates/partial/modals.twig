@@ -74,16 +74,18 @@
             <p>
                 <input type="text" name="tel" id="tel" value="{{ user.tel }}" placeholder="Broj mobitela" class="form-control" required />
             </p>
-            <br />
-            <p>
-                <input type="text" name="height" id="height" placeholder="Visina (cm)" class="form-control" required />
-            </p>
-            <p>
-                <input type="text" name="weight" id="weight" placeholder="Težina (kg)" class="form-control" required />
-            </p>
-            <p>
-                <input type="text" name="shoe_size" id="shoe_size" placeholder="Broj obuće (EU)" class="form-control" required />
-            </p>
+
+            <div class="additional-r1-info">
+                <p>
+                    <input type="text" name="height" id="height" placeholder="Visina (cm)" class="form-control" required />
+                </p>
+                <p>
+                    <input type="text" name="weight" id="weight" placeholder="Težina (kg)" class="form-control" required />
+                </p>
+                <p>
+                    <input type="text" name="shoe_size" id="shoe_size" placeholder="Broj obuće (EU)" class="form-control" required />
+                </p>
+            </div>
 
             <input type="hidden" name="signup-course" id="signup-course" value="" />
             <input type="submit" class="btn btn-primary" id="btn-additional-details" value="Prijava na tečaj" />
