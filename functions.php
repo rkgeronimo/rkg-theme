@@ -88,8 +88,9 @@ add_action('wp_ajax_nopriv_is_user_logged_in', 'ajax_check_user_logged_in');
 function rkg_user_additional_details()
 {
     $info              = array();
-    $info['dob'] = date('Y-m-d', strtotime($_POST['dob']));
-    $info['pob'] = $_POST['pob'];
+    $info['dob']       = date('Y-m-d', strtotime($_POST['dob']));
+    $info['pob']       = $_POST['pob'];
+    $info['address']   = $_POST['address'];
     $info['oib']       = $_POST['oib'];
     $info['tel']       = $_POST['tel'];
     $info['course']    = $_POST['course'];
@@ -99,6 +100,11 @@ function rkg_user_additional_details()
         $currentUser->ID,
         'pob',
         $info['pob']
+    );
+    update_user_meta(
+        $currentUser->ID,
+        'address',
+        $info['address']
     );
     update_user_meta(
         $currentUser->ID,

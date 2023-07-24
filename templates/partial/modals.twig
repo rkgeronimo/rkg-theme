@@ -49,7 +49,7 @@
             </form>
         {% endif %}
         <form class="form-horizontal course-signup-form" id="additional-details-form" role="form">
-            {% if user.dob is empty or user.pob is empty or user.oib is empty or user.tel is empty %}
+            {% if user.dob is empty or user.pob is empty or user.address is empty or user.oib is empty or user.tel is empty %}
                 <p>Na korak si da postaneš dio tečaja!</p>
                 <p>Trebaju nam još ove informacije od tebe</p>
             {% else %}
@@ -67,6 +67,9 @@
             </p>
             <p>
                 <input type="text" name="pob" id="pob" value="{{ user.pob }}" placeholder="Mjesto rođenja" class="form-control" required minlength="2" />
+            </p>
+            <p>
+                <input type="text" name="address" id="address" value="{{ user.address }}" placeholder="Adresa (ulica, pbr i grad)" class="form-control" required />
             </p>
             <p>
                 <input type="text" name="oib" id="oib" value="{{ user.oib }}" placeholder="OIB" class="form-control" required minlength="11" minlength="11" pattern="[0-9]+" />
