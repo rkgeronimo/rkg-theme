@@ -95,6 +95,10 @@ function rkg_user_additional_details()
     $info['tel']       = $_POST['tel'];
     $info['course']    = $_POST['course'];
 
+    $info['weight']    = $_POST['weight'];
+    $info['height']    = $_POST['height'];
+    $info['shoe_size']    = $_POST['shoe_size'];
+
     $currentUser = wp_get_current_user();
     update_user_meta(
         $currentUser->ID,
@@ -129,6 +133,9 @@ function rkg_user_additional_details()
         array(
             'user_id'   => $currentUser->ID,
             'course_id' => $info['course'],
+            'weight' => $info['weight'],
+            'height' => $info['height'],
+            'shoe_size' => $info['shoe_size'],
             'created'   => date("Y-m-d H:i:s"),
         )
     );
