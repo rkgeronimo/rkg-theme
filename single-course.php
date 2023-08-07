@@ -18,7 +18,7 @@ $context['post'] = $post;
 $tableName       = $wpdb->prefix."rkg_course_meta";
 $context['meta'] = $wpdb->get_row(
     "SELECT id, category, "
-    ."organiser, location, terms, price, limitation, registered, starttime, "
+    ."organiser, location, terms, price, limitation, locked, registered, starttime, "
     ."endtime, deadline FROM "
     .$tableName
     ." WHERE id="
@@ -56,8 +56,8 @@ $context['metaTemplate']->hub3_price =
     str_pad($context['metaTemplate']->hub3_price, 15, "0", STR_PAD_LEFT);
 
 $tableName = $wpdb->prefix."rkg_course_signup";
-$students = $wpdb->get_col(
-    "SELECT user_id FROM "
+$students = $wpdb->get_results(
+    "SELECT user_id, payed FROM "
     .$tableName
     ." WHERE course_id="
     .$post->ID
@@ -65,7 +65,11 @@ $students = $wpdb->get_col(
 );
 
 foreach ($students as $value) {
-    $context['students'][] = new Timber\User($value);
+    $student = new Timber\User($value->user_id);
+    $context['students'][] = $student;
+    if ($student->id === $context['user']->id) {
+        $context['user']->payed = !!$value->payed;
+    }
 }
 
 if ($context['user']) {

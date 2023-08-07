@@ -12,7 +12,9 @@
                 <div class="rkg-article-meta course-date">{{ meta.starttime|date('j.n.') }} - {{ meta.endtime|date('j.n.') }}</div>
                 <div class="rkg-side">
                     {% if meta.endtime <= now|date('Y-m-d') %}
-                        <button class="course-signup course-disabled-button">Završeno</button>
+                        <button class="course-signup course-disabled-button">Prijave završene</button>
+                    {% elseif meta.locked == '1' %}
+                        <button class="course-disabled-button">Zaključano</button>
                     {% elseif post.ID in signups.courses %}
                         <button class="course-signout course-signout-button"
                                 data-course="{{ post.ID }}"
@@ -36,31 +38,33 @@
                             <a href="#" class="course-page-link" id="responsibility-survey-link">Ispunjavanje izjave o odgovornosti</a>
                         </div>
                         {% endif %}
+                        {% if user.payed == false %}
                         <div>
-                            <a href="#" class="ShowPayModal"
-                    data-title="Plaćanje za {{ metaTemplate.payment_desc }}"
-                    data-barcode_text="HRVHUB30
-EUR
-{{ metaTemplate.hub3_price }}
-{{ user.display_name }}
+                                <a href="#" class="ShowPayModal"
+                            data-title="Plaćanje za {{ metaTemplate.payment_desc }}"
+                            data-barcode_text="HRVHUB30
+                            EUR
+                            {{ metaTemplate.hub3_price }}
+                            {{ user.display_name }}
 
 
-RK GERONIMO
-Trg Krešimira Ćosića 10
-10000 Zagreb
-HR2524840081102706472
-HR67
-{{ user.oib }}
+                            RK GERONIMO
+                            Trg Krešimira Ćosića 10
+                            10000 Zagreb
+                            HR2524840081102706472
+                            HR67
+                            {{ user.oib }}
 
-{{ metaTemplate.payment_desc }} - {{ user.display_name }}"
-                    data-iznos="{{ metaTemplate.payment_price }} EUR"
-                    data-primatelj="RK GERONIMO, Trg Krešimira Ćosića 10, Zagreb"
-                    data-iban="HR2524840081102706472"
-                    data-model_placanja="HR67"
-                    data-poziv_na_broj="{{ user.oib }}"
-                    data-opis_placanja="{{ metaTemplate.payment_desc }} - {{ user.display_name }}"
-                    >Podaci za uplatu</a>
+                            {{ metaTemplate.payment_desc }} - {{ user.display_name }}"
+                            data-iznos="{{ metaTemplate.payment_price }} EUR"
+                            data-primatelj="RK GERONIMO, Trg Krešimira Ćosića 10, Zagreb"
+                            data-iban="HR2524840081102706472"
+                            data-model_placanja="HR67"
+                            data-poziv_na_broj="{{ user.oib }}"
+                            data-opis_placanja="{{ metaTemplate.payment_desc }} - {{ user.display_name }}"
+                            >Podaci za uplatu</a>
                         </div>
+                        {% endif %}
                     {% elseif meta.deadline < now|date('Y-m-d') %}
                         <button disabled class="course-disabled-button">Istekle prijave</button>
                     {% elseif meta.limitation <= meta.registered %}
