@@ -70,6 +70,7 @@ class UsersList
     public function addUsersColumns($columnHeaders)
     {
         $columnHeaders['memberNumber'] = "Članski broj";
+        $columnHeaders['oib']          = "OIB";
         $columnHeaders['currnetYear']  = "Članarina za ".date('Y');
         $columnHeaders['nextYear']     = "Članarina za ".(date('Y')+1);
         $columnHeaders['firstYear']    = "Član od";
@@ -93,6 +94,7 @@ class UsersList
     {
         global $wpdb;
         $number = null;
+        $oib = null;
         $year   = null;
         $payed  = null;
         switch ($columnName) {
@@ -100,6 +102,13 @@ class UsersList
                 $number = get_user_meta(
                     $userId,
                     'memberNumber',
+                    true
+                );
+                break;
+            case 'oib':
+                $oib = get_user_meta(
+                    $userId,
+                    'oib',
                     true
                 );
                 break;
@@ -149,6 +158,10 @@ class UsersList
 
         if ($number) {
             return $number;
+        }
+
+        if ($oib) {
+            return $oib;
         }
 
         return "&nbsp;";
