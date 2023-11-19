@@ -201,7 +201,7 @@ function rkg_user_excursion_signup()
     $currentUser = wp_get_current_user();
 
     $tableName   = $wpdb->prefix."rkg_excursion_signup";
-    $wpdb->insert(
+    $result = $wpdb->insert(
         $tableName,
         array(
             'user_id'   => $currentUser->ID,
@@ -209,6 +209,7 @@ function rkg_user_excursion_signup()
         )
     );
 
+    // Delete from waiting list if user is there
     $tableName   = $wpdb->prefix."rkg_excursion_waiting";
     $waiting     = $wpdb->delete(
         $tableName,
@@ -223,10 +224,13 @@ function rkg_user_excursion_signup()
         $wpdb->query("UPDATE $tableName SET waiting = waiting - 1 WHERE id = {$info['post']};");
     }
 
-    $wpdb->query("UPDATE $tableName SET registered = registered + 1 WHERE id = {$info['post']};");
-
-    echo json_encode(array('update'=>true, 'message'=>__('Prijava uspješna')));
-
+    if ($result) {
+        $wpdb->query("UPDATE $tableName SET registered = registered + 1 WHERE id = {$info['post']};");
+        echo json_encode(array('update'=>true, 'message'=>__('Prijava uspješna')));
+        wp_die();
+    } 
+    
+    echo json_encode(array('update'=>true, 'message'=>__('došlo je do greške prilikom prijave')));
     wp_die();
 }
 
@@ -266,7 +270,7 @@ function rkg_course_signout()
     $currentUser = wp_get_current_user();
     global $wpdb;
     $tableName = $wpdb->prefix."rkg_course_signup";
-    $wpdb->delete(
+    $result = $wpdb->delete(
         $tableName,
         array(
             'user_id'   => $currentUser->ID,
@@ -274,11 +278,15 @@ function rkg_course_signout()
         )
     );
 
-    $tableName = $wpdb->prefix."rkg_course_meta";
-    $wpdb->query("UPDATE $tableName SET registered = registered - 1 WHERE id = {$info['course']};");
+    if ($result) {
+        $tableName = $wpdb->prefix."rkg_course_meta";
+        $wpdb->query("UPDATE $tableName SET registered = registered - 1 WHERE id = {$info['course']};");
+    
+        echo json_encode(array('update'=>true, 'message'=>__('odjava uspješna')));   
+        wp_die(); 
+    }
 
-    echo json_encode(array('update'=>true, 'message'=>__('odjava uspješna')));
-
+    echo json_encode(array('update'=>true, 'message'=>__('došlo je do greške kod odjave')));
     wp_die();
 }
 
@@ -293,7 +301,7 @@ function rkg_excursion_signout()
     $currentUser = wp_get_current_user();
     global $wpdb;
     $tableName = $wpdb->prefix."rkg_excursion_signup";
-    $wpdb->delete(
+    $result = $wpdb->delete(
         $tableName,
         array(
             'user_id' => $currentUser->ID,
@@ -301,11 +309,15 @@ function rkg_excursion_signout()
         )
     );
 
-    $tableName = $wpdb->prefix."rkg_excursion_meta";
-    $wpdb->query("UPDATE $tableName SET registered = registered - 1 WHERE id = {$info['post']};");
+    if ($result) {
+        $tableName = $wpdb->prefix."rkg_excursion_meta";
+        $wpdb->query("UPDATE $tableName SET registered = registered - 1 WHERE id = {$info['post']};");
+    
+        echo json_encode(array('update'=>true, 'message'=>__('odjava uspješna')));
+        wp_die();
+    }
 
-    echo json_encode(array('update'=>true, 'message'=>__('odjava uspješna')));
-
+    echo json_encode(array('update'=>true, 'message'=>__('došlo je do greške kod odjave')));
     wp_die();
 }
 
