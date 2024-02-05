@@ -27,14 +27,19 @@ $context['meta'] = $wpdb->get_row(
 
 $context['organiser'] = new Timber\User($context['meta']->organiser);
 
+// Drugi termini
 $context['courseTerms'] = $wpdb->get_results(
-    "SELECT id, category, "
+    "SELECT orig.id AS id, category, "
     ."starttime, endtime, deadline FROM "
-    .$tableName
+    .$tableName . " orig"
+    ." LEFT JOIN wp_posts wps ON orig.id = wps.id"
     ." WHERE deadline > "
     .date("'Y-m-d'")
     ." AND category = "
     .$context['meta']->category
+    ." AND orig.id != " . $post->ID
+    ." AND post_type = 'course'"
+    ." AND post_status = 'publish'"
     ." ORDER BY deadline"
 );
 
