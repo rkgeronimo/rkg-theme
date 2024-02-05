@@ -602,3 +602,6 @@ function login_url_to_homepage($login_url, $redirect, $force_reauth) {
 	return $login_url;
 }
 
+
+// Disable admin notification when any user changes password
+add_filter( 'send_password_change_email', '__return_false' );
