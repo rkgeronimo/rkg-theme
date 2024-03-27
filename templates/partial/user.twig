@@ -1,5 +1,5 @@
 <div class="rkg-user">
-    {{ userDetail.display_name }}
+    {{ "#{userDetail.first_name} #{userDetail.last_name}" }}
 
     {% if user.can('edit_excursions') %}
         <div class="rkg-user-details">
@@ -8,7 +8,9 @@
             <div class="rkg-user-details-flex">
                 <table style="text-align: left">
                     <tr class="only-mobile">
-                        <th style="text-align: center" colspan="2">{{ userDetail.display_name }}</th>
+                        <th style="text-align: center" colspan="2">
+                            {{ "#{userDetail.first_name} #{userDetail.last_name}" }}
+                        </th>
                     </tr>
                     <tr>
                         <th>Email</th>
