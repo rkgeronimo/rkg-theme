@@ -61,29 +61,6 @@
                         <table class="excursion-block-t"><tbody>
                                 <tr>
                                     <td>
-                                        {% if excursion.canceled %}
-                                            <span class="excursion-td-span">Otkazan</span>
-                                        {% elseif excursion.endtime < now|date('Y-m-d') %}
-                                            <span class="excursion-td-span">Prošao</span>
-                                        {% elseif excursion.deadline < now|date('Y-m-d') %}
-                                            <span class="excursion-td-span">Zaključan</span>
-                                        {% elseif excursion.id in signups.excursions %}
-                                            <a class="excursion-signout"
-                                               href="#"
-                                               data-post="{{ excursion.id }}"
-                                               data-name="{{ excursion.post_title }}"
-                                               >ODJAVI SE</a>
-                                        {% elseif excursion.limitation <= excursion.registered %}
-                                            <span class="excursion-td-span">Popunjen</span>
-                                        {% else %}
-                                            <a class="excursion-signup"
-                                               href="#"
-                                               data-post="{{ excursion.id }}"
-                                               data-name="{{ excursion.post_title }}"
-                                               >PRIJAVI SE</a>
-                                        {% endif %}
-                                    </td>
-                                    <td>
                                         <a href="{{ excursion.link}}">VIŠE</a>
                                     </td>
                                 </tr>
