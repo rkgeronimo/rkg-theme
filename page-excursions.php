@@ -43,12 +43,12 @@ if (!empty($_GET['godina'])
     if (!empty($_GET['godina'])) {
         $where[] = "rem.endtime > '".$_GET['godina']."-01-01'";
         if ($_GET['godina'] == date("Y")) {
-            $where = "rem.starttime < ".date("'Y-m-d'");
+            $where[] = "rem.starttime < ".date("'Y-m-d'");
         } else {
             $where[] = "rem.starttime < '".$_GET['godina']."-12-31'";
         }
     } else {
-        $where = "rem.endtime < ".date("'Y-m-d'");
+        $where[] = "rem.endtime < ".date("'Y-m-d'");
     }
     if (!empty($_GET['naziv'])) {
         $where[] = "p.post_title LIKE '%".$_GET['naziv']."%'";
