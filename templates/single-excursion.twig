@@ -38,10 +38,17 @@
                                 data-name="{{ post.title }}">Odjava</button>
                     {% elseif meta.deadline < now|date('Y-m-d') %}
                         <button class="course-disabled-button">Zaključan</button>
-                        <span class="excursion-signup-waiting"
-                            data-post="{{ post.ID }}"
-                            data-name="{{ post.title }}"
-                            data-date="{{ meta.starttime|date('j.n.Y.') }}">Zabilježi se na listu interesa</span>
+                        {% if post.ID in signups.excursions_waiting %}
+                            <span class="excursion-signout-waiting"
+                                    data-post="{{ post.ID }}"
+                                    data-name="{{ post.title }}"
+                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Odjavi se sa liste interesa</span>
+                        {% elseif meta.limitation <= totalParticipants %}
+                            <span class="excursion-signup-waiting"
+                                    data-post="{{ post.ID }}"
+                                    data-name="{{ post.title }}"
+                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Zabilježi se na listu interesa</span>
+                        {% endif %}
                     {% elseif meta.limitation <= totalParticipants %}
                         <button class="course-disabled-button">Popunjen</button>
                         {% if post.ID in signups.excursions_waiting %}
