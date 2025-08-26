@@ -47,9 +47,8 @@
                                     data-name="{{ post.title }}"
                                     data-date="{{ meta.starttime|date('j.n.Y.') }}">Zabilježi se na listu interesa</span>
                         {% endif %}
-                    {% elseif replacements|length > 0 %}
-                        <button class="course-disabled-button">Lista čekanja postoji</button>
-                        <p><small>Lista čekanja nije prazna - nova prijava nije moguća. Organizator mora ručno dodati osobe sa liste interesa.</small></p>
+                    {% elseif meta.limitation <= totalParticipants %}
+                        <button class="course-disabled-button">Popunjen</button>
                         {% if post.ID in signups.excursions_waiting %}
                             <span class="excursion-signout-waiting"
                                     data-post="{{ post.ID }}"
@@ -61,14 +60,29 @@
                                     data-name="{{ post.title }}"
                                     data-date="{{ meta.starttime|date('j.n.Y.') }}">Zabilježi se na listu interesa</span>
                         {% endif %}
-                    {% elseif meta.limitation <= totalParticipants %}
-                        <button class="course-disabled-button">Popunjen</button>
+                    {% elseif replacements|length > 0 %}
+                        {% set freeSpots = meta.limitation - totalParticipants %}
+                        {% if user_waiting_position == 1 and freeSpots > 0 %}
+                            <button class="excursion-signup course-signup-button"
+                                    data-post="{{ post.ID }}"
+                                    data-name="{{ post.title }}"
+                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Prijava (prvi si na listi!)</button>
+                            <p><small>Prvi si na listi čekanja i ima slobodno mjesto.</small></p>
+                        {% else %}
+                            <button class="course-disabled-button">Lista čekanja postoji</button>
+                            {% if user_waiting_position > 1 %}
+                                <p><small>{{ user_waiting_position }}. si na listi čekanja.</small></p>
+                            {% else %}
+                                <p><small>Lista čekanja nije prazna - nova prijava nije moguća. Organizator mora ručno dodati osobe sa liste interesa.</small></p>
+                            {% endif %}
+                        {% endif %}
+                        
                         {% if post.ID in signups.excursions_waiting %}
                             <span class="excursion-signout-waiting"
                                     data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
                                     data-date="{{ meta.starttime|date('j.n.Y.') }}">Odjavi se sa liste interesa</span>
-                        {% else %}
+                        {% elseif user_waiting_position == 0 %}
                             <span class="excursion-signup-waiting"
                                     data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"

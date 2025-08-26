@@ -135,6 +135,25 @@ $context['guests'] = $wpdb->get_results(
     ." ORDER BY created"
 );
 
+$context['user_waiting_position'] = 0;
+if ($context['user']->id) {
+    $waitingTableName = $wpdb->prefix."rkg_excursion_waiting";
+    // Only compute position if the user actually has a row on the waiting list
+    $created = $wpdb->get_var($wpdb->prepare(
+        "SELECT created FROM $waitingTableName WHERE post_id = %d AND user_id = %d",
+        $post->ID, $context['user']->id
+    ));
+    if ($created) {
+        $context['user_waiting_position'] = (int) $wpdb->get_var($wpdb->prepare(
+            "SELECT COUNT(*) + 1 FROM $waitingTableName
+             WHERE post_id = %d AND created < %s",
+            $post->ID, $created
+        ));
+    } else {
+        $context['user_waiting_position'] = 0;
+    }
+}
+
 $tableName = $wpdb->prefix."rkg_excursion_guest";
 $context['myGuests'] = $wpdb->get_results(
     "SELECT name as display_name, email as user_email, tel FROM "
