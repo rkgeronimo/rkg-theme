@@ -66,14 +66,14 @@
                             <button class="excursion-signup course-signup-button"
                                     data-post="{{ post.ID }}"
                                     data-name="{{ post.title }}"
-                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Prijava (prvi si na listi!)</button>
-                            <p><small>Prvi si na listi čekanja i ima slobodno mjesto.</small></p>
+                                    data-date="{{ meta.starttime|date('j.n.Y.') }}">Prijava</button>
+                            <p><small>Na vrhu si liste interesa i ima slobodno mjesto.</small></p>
                         {% else %}
-                            <button class="course-disabled-button">Lista čekanja postoji</button>
+                            <button class="course-disabled-button">Lista interesa postoji</button>
                             {% if user_waiting_position > 1 %}
-                                <p><small>{{ user_waiting_position }}. si na listi čekanja.</small></p>
+                                <p><small>{{ user_waiting_position }}. si na listi interesa.</small></p>
                             {% else %}
-                                <p><small>Lista čekanja nije prazna - nova prijava nije moguća. Organizator mora ručno dodati osobe sa liste interesa.</small></p>
+                                <p><small>Lista interesa nije prazna - nova prijava nije moguća. Organizator mora ručno dodati osobe sa liste interesa.</small></p>
                             {% endif %}
                         {% endif %}
                         
